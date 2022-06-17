@@ -1,0 +1,12 @@
+# python 3.10
+pip install requests==2.28.0
+pip install numpy==1.22.4
+pip install pandas==1.4.2
+pip install matplotlib==3.5.2
+pip install seaborn==0.11.2
+pip install lxml==4.9.0
+pip install openpyxl==3.0.10
+pip install statsmodels==0.13.2
+pip install sklearn==1.1.1
+pip install bs4==4.11.1
+pip install pyportfolioopt==1.5.3
