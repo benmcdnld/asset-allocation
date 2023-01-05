@@ -2,17 +2,17 @@ import numpy as np
 import pandas as pd
 from pypfopt.efficient_frontier import EfficientFrontier
 
-def algorithm(sims=1000, max_w=0.3, ret_sd=0.01, risk_sd=0.01):
+def mv_portfolio(max_risk, sims=1000, max_w=0.333, ret_sd=0.01, risk_sd=0.01):
     """
     
     
     """
     # Reads risk/return inputs and correlation matrix
 
-    return_risk_df = pd.read_excel('..\docs\optimization_assumptions_2022.xlsx',
+    return_risk_df = pd.read_excel('..\docs\optimization_assumptions_2023.xlsx',
                                 sheet_name='return_risk', index_col=0)
 
-    corr_df = pd.read_excel('..\docs\optimization_assumptions_2022.xlsx',
+    corr_df = pd.read_excel('..\docs\optimization_assumptions_2023.xlsx',
                         sheet_name='corr', index_col=0)
 
     expected_returns = return_risk_df.exp_return
@@ -39,7 +39,7 @@ def algorithm(sims=1000, max_w=0.3, ret_sd=0.01, risk_sd=0.01):
         
         # Setup mean variance
         ef = EfficientFrontier(expected_returns, cov_df, weight_bounds=(0,max_w)) 
-        clean_weights = ef.efficient_risk(0.12)  # find the portfolio that minimises volatility and L2_reg
+        clean_weights = ef.efficient_risk(max_risk)  # find the portfolio that minimises volatility and L2_reg
         cleaned_weights = ef.clean_weights()
 
         # Saves each simulation's portfolios weights and performance 
